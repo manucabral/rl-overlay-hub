@@ -65,8 +65,6 @@ def build() -> None:
         "--nofollow-import-to=PySide2",
         "--nofollow-import-to=PySide6",
         "--nofollow-import-to=nuitka",
-        "--nofollow-import-to=pytest",
-        "--nofollow-import-to=unittest",
         "--nofollow-import-to=gi",
         "--nofollow-import-to=pydoc",
         "--nofollow-import-to=distutils",
