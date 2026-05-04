@@ -36,9 +36,11 @@ async def simulate(
 ) -> dict:
     if not state_manager.preview:
         raise HTTPException(status_code=400, detail="Not in preview mode")
-    event_data = state_manager.apply_preview_event(event_name)
-    if event_data is None:
+    result = state_manager.apply_preview_event(event_name)
+    if result is None:
         raise HTTPException(status_code=400, detail=f"Unknown event: {event_name}")
-    await connection_manager.broadcast(event_name, event_data)
-    await _broadcast_state(state_manager, connection_manager)
-    return {"ok": True, "event": event_name}
+    public_event_name, event_data, mutates_state = result
+    await connection_manager.broadcast(public_event_name, event_data)
+    if mutates_state:
+        await _broadcast_state(state_manager, connection_manager)
+    return {"ok": True, "event": public_event_name}
