@@ -73,7 +73,9 @@ async function pollStatus() {
 }
 
 function syncPreviewButtons(enabled) {
-  document.getElementById("preview-buttons").classList.toggle("enabled", enabled);
+  document.querySelectorAll(".preview-buttons").forEach((el) => {
+    el.classList.toggle("enabled", enabled);
+  });
   document.getElementById("preview-status").innerHTML =
     `Preview mode is <strong>${enabled ? "ON" : "OFF"}</strong>`;
 }
@@ -206,6 +208,8 @@ function renderLive() {
   document.getElementById("live-s-goals").textContent = s.goals ?? 0;
   document.getElementById("live-s-assists").textContent = s.assists ?? 0;
   document.getElementById("live-s-saves").textContent = s.saves ?? 0;
+  document.getElementById("live-s-demos").textContent = s.demolitions ?? 0;
+  document.getElementById("live-s-demos-taken").textContent = s.demolitions_taken ?? 0;
   renderSessionSummary();
 }
 
@@ -233,6 +237,9 @@ function renderSessionSummary() {
     </div>
     <div class="live-session-row">
       <span>Goals ${session.stats.goals} · Assists ${session.stats.assists} · Saves ${session.stats.saves}</span>
+    </div>
+    <div class="live-session-row">
+      <span>Demos ${session.stats.demolitions ?? 0} · Demos Taken ${session.stats.demolitions_taken ?? 0}</span>
     </div>
   `).join("");
 }
@@ -500,7 +507,7 @@ function setupEventHandlers() {
     }
   });
 
-  document.getElementById("preview-buttons").addEventListener("click", async (e) => {
+  document.getElementById("tab-preview").addEventListener("click", async (e) => {
     const btn = e.target.closest(".sim-btn");
     if (!btn) return;
     try {

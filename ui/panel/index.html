@@ -75,17 +75,43 @@
         <span id="preview-status">Preview mode is <strong>OFF</strong></span>
       </div>
 
-      <div class="preview-buttons" id="preview-buttons">
-        <button class="sim-btn" data-event="goal:scored">⚽ Simulate Goal</button>
-        <button class="sim-btn" data-event="overtime:started">⏱ Simulate Overtime</button>
-        <button class="sim-btn" data-event="match:started">▶ New Match</button>
-        <button class="sim-btn" data-event="match:ended">🏁 End Match</button>
-        <button class="sim-btn danger" data-event="session:reset">↺ Reset Session</button>
+      <div class="preview-groups">
+        <div class="preview-group">
+          <h3>State-changing</h3>
+          <div class="preview-buttons" id="preview-buttons">
+            <button class="sim-btn" data-event="match:started">▶ New Match</button>
+            <button class="sim-btn" data-event="goal:scored">⚽ Simulate Goal</button>
+            <button class="sim-btn" data-event="overtime:started">⏱ Simulate Overtime</button>
+            <button class="sim-btn" data-event="match:ended">🏁 End Match</button>
+            <button class="sim-btn" data-event="match:destroyed">⏹ Return to Menu</button>
+            <button class="sim-btn danger" data-event="session:reset">↺ Reset Session</button>
+          </div>
+        </div>
+
+        <div class="preview-group">
+          <h3>Animation / testing</h3>
+          <div class="preview-buttons">
+            <button class="sim-btn" data-event="match:initialized">🧩 Match Initialized</button>
+            <button class="sim-btn" data-event="countdown-begin">3️⃣ Countdown</button>
+            <button class="sim-btn" data-event="round-started">🚀 Round Start</button>
+            <button class="sim-btn" data-event="match-paused">⏸ Pause</button>
+            <button class="sim-btn" data-event="match-unpaused">▶ Resume</button>
+            <button class="sim-btn" data-event="ball-hit">🥅 Ball Hit</button>
+            <button class="sim-btn" data-event="crossbar-hit">🎯 Crossbar Hit</button>
+            <button class="sim-btn" data-event="goal-replay-start">🎬 Replay Start</button>
+            <button class="sim-btn" data-event="goal-replay-will-end">⌛ Replay Will End</button>
+            <button class="sim-btn" data-event="goal-replay-end">✅ Replay End</button>
+            <button class="sim-btn" data-event="statfeed-demo">💥 Demolition Feed</button>
+            <button class="sim-btn" data-event="player-demolished">☠️ Player Demo</button>
+            <button class="sim-btn" data-event="podium-started">🏆 Podium</button>
+            <button class="sim-btn" data-event="replay-created">💾 Replay Saved</button>
+          </div>
+        </div>
       </div>
 
       <div class="preview-info">
         <p>While Preview Mode is ON, overlays receive simulated data.</p>
-        <p>Use the buttons above to trigger events and test your overlay reactions.</p>
+        <p>State-changing buttons update the live preview state; animation/testing buttons only fire overlay events.</p>
       </div>
     </section>
 
@@ -140,6 +166,8 @@
             <div class="live-session-row"><span>Goals</span><strong id="live-s-goals">0</strong></div>
             <div class="live-session-row"><span>Assists</span><strong id="live-s-assists">0</strong></div>
             <div class="live-session-row"><span>Saves</span><strong id="live-s-saves">0</strong></div>
+            <div class="live-session-row"><span>Demos</span><strong id="live-s-demos">0</strong></div>
+            <div class="live-session-row"><span>Demos Taken</span><strong id="live-s-demos-taken">0</strong></div>
           </div>
           <button class="btn-primary" id="start-new-session" style="margin-top:12px;">Start New Session</button>
         </div>

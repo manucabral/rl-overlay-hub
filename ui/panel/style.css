@@ -301,6 +301,30 @@ body {
 }
 .preview-buttons.enabled { opacity: 1; pointer-events: all; }
 
+.preview-groups {
+  display: grid;
+  gap: 18px;
+}
+
+.preview-group {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.preview-group h3 {
+  margin: 0 0 12px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.preview-group .preview-buttons {
+  margin-bottom: 0;
+}
+
 .sim-btn {
   background: var(--surface);
   border: 1px solid var(--border);
