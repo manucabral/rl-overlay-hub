@@ -1,0 +1,73 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', 'Arial Black', sans-serif;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(-60px) scale(0.7);
+  opacity: 0;
+  transition: none;
+  pointer-events: none;
+  position: relative;
+}
+
+.banner.show {
+  animation: bannerIn 0.4s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+
+.banner.hide {
+  animation: bannerOut 0.35s ease-in forwards;
+}
+
+@keyframes bannerIn {
+  from { opacity: 0; transform: translateY(-60px) scale(0.7); }
+  to   { opacity: 1; transform: translateY(0)     scale(1);   }
+}
+
+@keyframes bannerOut {
+  from { opacity: 1; transform: scale(1);   }
+  to   { opacity: 0; transform: scale(1.08); }
+}
+
+.goal-label {
+  font-size: 72px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.2em;
+  text-shadow:
+    0 0 30px rgba(255,220,50,0.9),
+    0 0 60px rgba(255,180,0,0.6),
+    2px 3px 0 rgba(0,0,0,0.6);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.scorer {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffe066;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+  text-shadow: 1px 2px 0 rgba(0,0,0,0.7);
+}
+
+.team-bar {
+  width: 180px;
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 10px;
+  background: #fff;
+}
+
+.team-bar.blue   { background: #1e50c8; }
+.team-bar.orange { background: #dc6414; }

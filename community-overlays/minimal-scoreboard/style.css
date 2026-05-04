@@ -1,0 +1,76 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: transparent;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 12px;
+  overflow: hidden;
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  min-width: 90px;
+}
+
+.team.blue  { background: rgba(30, 80, 200, 0.88); color: #fff; justify-content: flex-start; }
+.team.orange { background: rgba(220, 100, 20, 0.88); color: #fff; justify-content: flex-end; }
+
+.team-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+
+.score {
+  font-size: 36px;
+  min-width: 28px;
+  text-align: center;
+  line-height: 1;
+}
+
+.center {
+  background: rgba(12, 12, 18, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 20px;
+  position: relative;
+}
+
+.timer {
+  font-size: 28px;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+.overtime-badge {
+  font-size: 9px;
+  color: #ffcc00;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s;
+  margin-top: 1px;
+  height: 12px;
+}
+
+.overtime-badge.visible { opacity: 1; }

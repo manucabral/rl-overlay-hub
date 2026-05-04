@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal Scoreboard</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="scoreboard">
+    <div class="team blue">
+      <span class="team-label">BLU</span>
+      <span class="score" id="blue-score">0</span>
+    </div>
+    <div class="center">
+      <span class="timer" id="timer">5:00</span>
+      <span class="overtime-badge" id="overtime-badge">OT</span>
+    </div>
+    <div class="team orange">
+      <span class="score" id="orange-score">0</span>
+      <span class="team-label">ONG</span>
+    </div>
+  </div>
+
+  <script src="/overlay-api.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

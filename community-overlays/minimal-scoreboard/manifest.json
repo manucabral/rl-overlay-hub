@@ -1,0 +1,10 @@
+{
+  "id": "minimal-scoreboard",
+  "name": "Minimal Scoreboard",
+  "version": "1.0.0",
+  "author": "RL Overlay Hub",
+  "description": "Clean, transparent scoreboard showing blue score, timer, and orange score. Perfect for competitive streams.",
+  "entry": "index.html",
+  "preview": "preview.png",
+  "permissions": ["match:read"]
+}
