@@ -3,7 +3,7 @@
 # RL Overlay Hub
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Downloads](https://img.shields.io/github/downloads/manucabral/rl-overlay-hub/total)](https://github.com/manucabral/rl-overlay-hub/releases)
-[![Version](https://img.shields.io/badge/version-0.0.1-blue)](https://github.com/manucabral/rl-overlay-hub/releases)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/manucabral/rl-overlay-hub/releases)
 [![License](https://img.shields.io/github/license/manucabral/rl-overlay-hub)](https://github.com/manucabral/rl-overlay-hub/blob/main/LICENSE)
 
 Desktop app that connects Rocket League to OBS browser-source overlays, no coding required to get started.
