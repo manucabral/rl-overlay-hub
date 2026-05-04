@@ -5,8 +5,10 @@ __pycache__/
 
 # C extensions
 *.so
+*.iss
 
 # Distribution / packaging
+dist_build
 .Python
 build/
 develop-eggs/
