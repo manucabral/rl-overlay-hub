@@ -36,6 +36,8 @@ class SessionStatePayload(BaseModel):
     goals: int = 0
     assists: int = 0
     saves: int = 0
+    demolitions: int = 0
+    demolitions_taken: int = 0
 
 
 def utc_now() -> datetime:

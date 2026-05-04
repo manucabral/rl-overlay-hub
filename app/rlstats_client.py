@@ -234,13 +234,17 @@ class RLStatsClient:
         }
         await self._ws.broadcast("statfeed:event", payload)
         if event_name == "Demolition":
+            demolition_payload = {
+                "attacker": main.get("Name", ""),
+                "victim": secondary.get("Name", ""),
+            }
+            self._state.update_from_event("player:demolished", demolition_payload)
+            _persist_session(self._state)
             await self._ws.broadcast(
                 "player:demolished",
-                {
-                    "attacker": main.get("Name", ""),
-                    "victim": secondary.get("Name", ""),
-                },
+                demolition_payload,
             )
+            await self._ws.broadcast("session:updated", self._state.get_full_state()["session"])
 
     async def _handle_goal_replay(self, _msg, phase: str) -> None:
         await self._ws.broadcast("goal:replay", {"phase": phase})
