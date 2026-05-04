@@ -37,6 +37,8 @@ def test_get_session_summary(app_client):
     assert response.status_code == 200
     data = response.json()
     assert data["active_session"]["stats"]["matches"] == 0
+    assert data["active_session"]["stats"]["demolitions"] == 0
+    assert data["active_session"]["stats"]["demolitions_taken"] == 0
     assert data["archived_sessions"] == []
 
 
@@ -58,3 +60,28 @@ def test_websocket_connected_event(app_client):
         message = ws.receive_json()
         assert message["event"] == "connected"
         assert "match" in message["data"]
+
+
+def test_preview_simulate_alias_returns_public_event(app_client):
+    app_client.post("/api/preview/toggle", json={"enabled": True})
+
+    response = app_client.post("/api/preview/simulate/goal-replay-will-end")
+
+    assert response.status_code == 200
+    assert response.json() == {"ok": True, "event": "goal:replay:will-end"}
+
+
+def test_preview_simulate_requires_preview_mode(app_client):
+    response = app_client.post("/api/preview/simulate/ball-hit")
+
+    assert response.status_code == 400
+    assert response.json()["detail"] == "Not in preview mode"
+
+
+def test_preview_simulate_unknown_event_returns_400(app_client):
+    app_client.post("/api/preview/toggle", json={"enabled": True})
+
+    response = app_client.post("/api/preview/simulate/not-a-real-event")
+
+    assert response.status_code == 400
+    assert response.json()["detail"] == "Unknown event: not-a-real-event"
