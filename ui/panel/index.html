@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RL Overlay Hub</title>
+  <base href="/panel/" />
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="logo.svg" class="brand-icon" alt="logo" />
+      <span class="brand-name">RL Overlay Hub</span>
+    </div>
+    <div class="status-row">
+      <span class="status-dot" id="rl-dot"></span>
+      <span class="status-label" id="rl-label">Disconnected</span>
+      <span class="sep">·</span>
+      <span class="ws-label" id="ws-label">0 clients</span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="overlays">Overlays</button>
+    <button class="tab" data-tab="preview">Preview</button>
+    <button class="tab" data-tab="live">Live</button>
+    <button class="tab" data-tab="community">Community</button>
+    <button class="tab" data-tab="logs">Logs</button>
+    <button class="tab" data-tab="settings">Settings</button>
+  </nav>
+
+  <main class="content">
+
+    <!-- OVERLAYS TAB -->
+    <section class="tab-panel active" id="tab-overlays">
+      <div class="section-header">
+        <h2>Installed Overlays</h2>
+        <div class="header-row">
+          <span class="hint">Paste a URL into OBS Browser Source</span>
+          <button id="overlays-refresh" title="Refresh">↺ Refresh</button>
+        </div>
+      </div>
+      <div class="custom-install-bar">
+        <button id="custom-install-toggle" class="btn-custom-toggle">＋ Install Custom Overlay</button>
+      </div>
+
+      <div id="custom-install-panel" class="custom-install-panel" hidden>
+        <div class="local-install-row">
+          <input type="text" id="local-path-input" placeholder="C:\path\to\your\overlay-folder" readonly />
+          <button id="local-browse-btn">Browse…</button>
+          <button id="local-install-btn">Install</button>
+        </div>
+        <div id="install-custom-status" class="install-custom-status" hidden></div>
+      </div>
+
+      <div class="overlay-grid" id="overlay-grid">
+        <div class="loading">Loading overlays…</div>
+      </div>
+    </section>
+
+    <!-- PREVIEW TAB -->
+    <section class="tab-panel" id="tab-preview">
+      <div class="section-header">
+        <h2>Preview Mode</h2>
+        <span class="hint">Test overlays without Rocket League open</span>
+      </div>
+
+      <div class="preview-toggle-row">
+        <label class="toggle">
+          <input type="checkbox" id="preview-toggle" />
+          <span class="slider"></span>
+        </label>
+        <span id="preview-status">Preview mode is <strong>OFF</strong></span>
+      </div>
+
+      <div class="preview-buttons" id="preview-buttons">
+        <button class="sim-btn" data-event="goal:scored">⚽ Simulate Goal</button>
+        <button class="sim-btn" data-event="overtime:started">⏱ Simulate Overtime</button>
+        <button class="sim-btn" data-event="match:started">▶ New Match</button>
+        <button class="sim-btn" data-event="match:ended">🏁 End Match</button>
+        <button class="sim-btn danger" data-event="session:reset">↺ Reset Session</button>
+      </div>
+
+      <div class="preview-info">
+        <p>While Preview Mode is ON, overlays receive simulated data.</p>
+        <p>Use the buttons above to trigger events and test your overlay reactions.</p>
+      </div>
+    </section>
+
+    <!-- LIVE TAB -->
+    <section class="tab-panel" id="tab-live">
+      <div class="section-header">
+        <h2>Live State</h2>
+        <span class="hint">Real-time data from Rocket League</span>
+      </div>
+      <div class="live-grid">
+
+        <div class="live-card span-full">
+          <div class="live-card-title">Match <span id="live-active" class="live-status-badge">In Menu</span></div>
+          <div class="live-scoreboard">
+            <span class="live-team live-blue">BLUE <strong id="live-blue">0</strong></span>
+            <div class="live-clock-wrap">
+              <div id="live-clock" class="live-clock">5:00</div>
+              <div id="live-overtime" class="live-ot" style="display:none">OT</div>
+            </div>
+            <span class="live-team live-orange">ORANGE <strong id="live-orange">0</strong></span>
+          </div>
+        </div>
+
+        <div class="live-card">
+          <div class="live-card-title">Player</div>
+          <div id="live-player-name" class="live-player-name">–</div>
+          <div class="live-stats-grid">
+            <div class="live-stat"><span class="live-stat-val" id="live-goals">0</span><span class="live-stat-lbl">Goals</span></div>
+            <div class="live-stat"><span class="live-stat-val" id="live-assists">0</span><span class="live-stat-lbl">Assists</span></div>
+            <div class="live-stat"><span class="live-stat-val" id="live-saves">0</span><span class="live-stat-lbl">Saves</span></div>
+            <div class="live-stat"><span class="live-stat-val" id="live-shots">0</span><span class="live-stat-lbl">Shots</span></div>
+            <div class="live-stat"><span class="live-stat-val" id="live-score">0</span><span class="live-stat-lbl">Score</span></div>
+            <div class="live-stat"><span class="live-stat-val" id="live-demos">0</span><span class="live-stat-lbl">Demos</span></div>
+          </div>
+          <div class="live-boost-wrap">
+            <span class="live-boost-label">Boost</span>
+            <div class="live-boost-track"><div id="live-boost-bar" class="live-boost-bar"></div></div>
+            <span id="live-boost-val" class="live-boost-val">0</span>
+          </div>
+        </div>
+
+        <div class="live-card">
+          <div class="live-card-title">Session</div>
+          <div class="live-session-meta">
+            <div class="live-session-row"><span>Started</span><strong id="live-session-started">-</strong></div>
+            <div class="live-session-row"><span>Last Update</span><strong id="live-session-updated">-</strong></div>
+          </div>
+          <div class="live-session-rows">
+            <div class="live-session-row"><span>Matches</span><strong id="live-matches">0</strong></div>
+            <div class="live-session-row"><span>Wins</span><strong id="live-wins" style="color:var(--green)">0</strong></div>
+            <div class="live-session-row"><span>Losses</span><strong id="live-losses" style="color:var(--red)">0</strong></div>
+            <div class="live-session-row"><span>Goals</span><strong id="live-s-goals">0</strong></div>
+            <div class="live-session-row"><span>Assists</span><strong id="live-s-assists">0</strong></div>
+            <div class="live-session-row"><span>Saves</span><strong id="live-s-saves">0</strong></div>
+          </div>
+          <button class="btn-primary" id="start-new-session" style="margin-top:12px;">Start New Session</button>
+        </div>
+
+        <div class="live-card">
+          <div class="live-card-title">Archived Sessions</div>
+          <div id="archived-sessions-list" class="live-session-rows">
+            <div class="live-session-row"><span>No archived sessions yet</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COMMUNITY TAB -->
+    <section class="tab-panel" id="tab-community">
+      <div class="section-header">
+        <h2>Community Overlays</h2>
+        <span class="hint">Reviewed and approved overlays from GitHub</span>
+      </div>
+      <div class="search-row">
+        <input type="text" id="community-search" placeholder="Search by name, author or description…" />
+        <button id="community-refresh" title="Refresh registry">↺ Refresh</button>
+      </div>
+      <div class="community-list" id="community-list">
+        <div class="loading">Loading registry…</div>
+      </div>
+    </section>
+
+    <!-- LOGS TAB -->
+    <section class="tab-panel" id="tab-logs">
+      <div class="section-header">
+        <div class="header-row">
+          <div>
+            <h2>Logs</h2>
+            <span class="hint">Application log output (last 150 lines)</span>
+          </div>
+          <div class="log-controls">
+            <button id="log-pause">⏸ Pause</button>
+            <button id="log-clear">✕ Clear view</button>
+          </div>
+        </div>
+      </div>
+      <div id="log-output" class="log-output"></div>
+    </section>
+
+    <!-- SETTINGS TAB -->
+    <section class="tab-panel" id="tab-settings">
+      <div class="section-header">
+        <h2>Settings</h2>
+      </div>
+
+      <div class="settings-form">
+        <label class="field">
+          <span>Server Port</span>
+          <input type="number" id="setting-port" min="1024" max="65535" />
+        </label>
+        <label class="field field-inline">
+          <input type="checkbox" id="setting-verbose" />
+          <span>Verbose logging (DEBUG)</span>
+        </label>
+        <button class="btn-primary" id="save-settings">Save Settings</button>
+        <p class="settings-note">Port changes take effect after restarting the app.</p>
+
+        <div class="settings-section">
+          <h3>App Data</h3>
+          <p class="settings-note">Overlays, logs and settings are stored in <code>~/.rl-overlay-hub</code></p>
+          <button class="btn-secondary" id="open-data-folder">&#128193; Open App Folder</button>
+        </div>
+
+        <div class="rl-setup">
+          <h3>Rocket League Stats API</h3>
+          <p>Status of <code>TAStatsAPI.ini</code> - enables live data from Rocket League.</p>
+          <div id="rl-config-box" class="loading">Loading config status…</div>
+          <p style="margin-top:10px;font-size:11px;color:var(--muted)">
+            After enabling, restart Rocket League for the change to take effect.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
