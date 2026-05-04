@@ -1,0 +1,22 @@
+{
+  "overlays": [
+    {
+      "id": "goal-banner",
+      "name": "Goal Banner",
+      "version": "1.0.0",
+      "author": "RL Overlay Hub",
+      "description": "Animated banner that appears when a goal is scored, showing the scorer's name. Disappears automatically after 4 seconds.",
+      "path": "community-overlays/goal-banner",
+      "permissions": ["match:read", "events:goals"]
+    },
+    {
+      "id": "minimal-scoreboard",
+      "name": "Minimal Scoreboard",
+      "version": "1.0.0",
+      "author": "RL Overlay Hub",
+      "description": "Clean, transparent scoreboard showing blue score, timer, and orange score. Perfect for competitive streams.",
+      "path": "community-overlays/minimal-scoreboard",
+      "permissions": ["match:read"]
+    }
+  ]
+}
