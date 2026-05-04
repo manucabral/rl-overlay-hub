@@ -1,0 +1,41 @@
+[project]
+name = "rl-overlay-hub"
+version = "0.1.0"
+description = "Desktop hub for Rocket League browser-source overlays"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.111.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.7.0",
+    "pywebview>=5.0.5",
+    "rlstatsapi>=0.1.0",
+    "uvicorn[standard]>=0.30.0",
+    "websockets>=12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "nuitka>=2.3",
+    "pytest>=8.2.0",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.pylint.main]
+source-roots = ["."]
+
+[tool.pylint.messages_control]
+disable = [
+    "C0114", "C0115", "C0116",
+    "R0912", "R0913", "R0914", "R0915", "R0916", "R0917", "R0911",
+    "R0902", "R0903",
+    "W0718",
+    "R0801",
+    "C0415",
+    "E0401",
+]
+
+[tool.pylint.format]
+max-line-length = 100
