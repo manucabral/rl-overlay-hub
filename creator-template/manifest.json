@@ -1,0 +1,9 @@
+{
+  "id": "my-overlay",
+  "name": "My Overlay",
+  "version": "1.0.0",
+  "author": "YourName",
+  "description": "A brief description of what your overlay does.",
+  "entry": "index.html",
+  "preview": "preview.png"
+}

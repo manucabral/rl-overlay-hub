@@ -1,0 +1,25 @@
+/* Required: transparent background so OBS sees through to the game */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: transparent;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  /* Position your overlay using absolute/fixed positioning */
+}
+
+/* Example: a simple scoreboard at the top center */
+.scoreboard {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 24px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+}

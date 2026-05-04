@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Overlay</title>
+  <!--
+    Keep background transparent so OBS sees through to the game.
+    Set it in style.css: body { background: transparent; }
+  -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <!-- Your overlay markup goes here -->
+  <div class="scoreboard">
+    <span id="blue-score">0</span>
+    <span id="timer">5:00</span>
+    <span id="orange-score">0</span>
+  </div>
+
+  <!--
+    Always include overlay-api.js FIRST.
+    It auto-connects to the WebSocket and exposes window.RLOverlay.
+  -->
+  <script src="/overlay-api.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
