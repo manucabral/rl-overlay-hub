@@ -82,7 +82,7 @@ Data shape:
 {
   "match": { "blue_score": 0, "orange_score": 0, "clock": "5:00", "overtime": false, "is_active": false },
   "player": { "name": "", "goals": 0, "assists": 0, "saves": 0, "shots": 0, "score": 0, "boost": 0, "demos": 0 },
-  "session": { "matches": 0, "wins": 0, "losses": 0, "goals": 0, "assists": 0, "saves": 0 }
+  "session": { "matches": 0, "wins": 0, "losses": 0, "goals": 0, "assists": 0, "saves": 0, "demolitions": 0, "demolitions_taken": 0 }
 }
 ```
 
@@ -185,6 +185,52 @@ RLOverlay.on("overtime:started", () => {
 
 Data shape: `{}`
 
+### countdown:begin
+
+Fires when the kickoff countdown begins.
+
+```javascript
+RLOverlay.on("countdown:begin", ({ match_guid }) => {
+  showCountdown(match_guid);
+});
+```
+
+Data shape:
+
+```json
+{ "match_guid": "preview-match-001" }
+```
+
+### round:started
+
+Fires when the playable round begins after kickoff.
+
+Data shape:
+
+```json
+{ "match_guid": "preview-match-001" }
+```
+
+### match:paused
+
+Fires when a match is paused.
+
+Data shape:
+
+```json
+{ "match_guid": "preview-match-001" }
+```
+
+### match:unpaused
+
+Fires when a paused match resumes.
+
+Data shape:
+
+```json
+{ "match_guid": "preview-match-001" }
+```
+
 ### goal:replay
 
 Fires when a goal replay starts or ends.
@@ -203,6 +249,46 @@ Data shape:
 ```
 
 `phase` is either `"start"` or `"end"`.
+
+### goal:replay:will-end
+
+Fires shortly before a goal replay ends. This is useful if your overlay needs to prepare a transition back in.
+
+Data shape:
+
+```json
+{ "match_guid": "preview-match-001" }
+```
+
+### ball:hit
+
+Fires when the ball is struck and you want a reactive overlay effect.
+
+Data shape:
+
+```json
+{
+  "player_name": "DemoPlayer",
+  "team": "blue",
+  "pre_hit_speed": 82.5,
+  "post_hit_speed": 109.4
+}
+```
+
+### crossbar:hit
+
+Fires when the ball hits the crossbar.
+
+Data shape:
+
+```json
+{
+  "player_name": "DemoPlayer",
+  "team": "blue",
+  "ball_speed": 121.7,
+  "impact_force": 0.84
+}
+```
 
 ### player:updated
 
@@ -250,6 +336,39 @@ Data shape:
 ```
 
 `secondary_name` is the name of the other player involved, for example the player who was demolished.
+
+### player:demolished
+
+Fires when a demolition-specific overlay wants a simpler attacker/victim payload than the generic statfeed event.
+
+Data shape:
+
+```json
+{
+  "attacker": "Jstn",
+  "victim": "Fairy Peak"
+}
+```
+
+### podium:started
+
+Fires when the post-match podium sequence begins.
+
+Data shape:
+
+```json
+{ "match_guid": "preview-match-001" }
+```
+
+### replay:created
+
+Fires when a replay is created or saved.
+
+Data shape:
+
+```json
+{ "match_guid": "preview-match-001" }
+```
 
 ### disconnected
 

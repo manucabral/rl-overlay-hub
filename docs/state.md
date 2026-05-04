@@ -72,6 +72,8 @@ Cumulative totals for the current play session. These persist across matches and
 | `goals` | number | Total goals across all session matches |
 | `assists` | number | Total assists across all session matches |
 | `saves` | number | Total saves across all session matches |
+| `demolitions` | number | Total demolitions performed by the local player this session |
+| `demolitions_taken` | number | Total times the local player was demolished this session |
 
 Example:
 
@@ -82,7 +84,9 @@ Example:
   "losses": 3,
   "goals": 18,
   "assists": 9,
-  "saves": 22
+  "saves": 22,
+  "demolitions": 6,
+  "demolitions_taken": 4
 }
 ```
 

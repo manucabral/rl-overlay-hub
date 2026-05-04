@@ -31,4 +31,5 @@ Events include goal scored, match started, score updates, player stat changes, a
 - [State Reference](state.md) - the match, player, and session objects in detail
 - [Testing and Preview](testing.md) - test your overlay without Rocket League running
 - [Adding to OBS](obs.md) - configure a Browser Source
-- [Examples](examples/scoreboard.md) - annotated walkthroughs of the two built-in overlays
+- [Event Snippets](examples/event-snippets.md) - quick copy-paste patterns for simple events
+- [Examples](examples/scoreboard.md) - annotated walkthroughs of the built-in overlays

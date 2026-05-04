@@ -4,6 +4,8 @@ The goal-banner overlay shows an animated banner at the top of the screen when a
 
 This example demonstrates event-triggered animations and cleanup logic for rapid events.
 
+For short recipes covering replay, statfeed, session, and other simple events, see [Event Snippets](event-snippets.md).
+
 ## File structure
 
 ```

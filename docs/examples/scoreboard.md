@@ -4,6 +4,8 @@ The minimal-scoreboard overlay shows blue score, a timer, and orange score at th
 
 This is the simplest complete overlay in the hub and a good starting point.
 
+If you want quick copy-paste patterns for other simple events, see [Event Snippets](event-snippets.md).
+
 ## File structure
 
 ```

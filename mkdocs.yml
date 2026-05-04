@@ -36,5 +36,6 @@ nav:
   - Testing and Preview: testing.md
   - Adding to OBS: obs.md
   - Examples:
+      - Event Snippets: examples/event-snippets.md
       - Minimal Scoreboard: examples/scoreboard.md
       - Goal Banner: examples/goal-banner.md

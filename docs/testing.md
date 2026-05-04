@@ -48,11 +48,23 @@ While Preview Mode is on, the hub shows buttons to simulate individual events. C
 
 | Button | Event fired | What changes |
 |---|---|---|
-| Goal scored | `goal:scored` | Blue score increments; event includes player and assister names |
-| Overtime | `overtime:started` | Match `overtime` field becomes `true` |
-| Match started | `match:started` | Match and player stats reset |
-| Match ended | `match:ended` | Session wins increment |
+| New Match | `match:started` | Match and player stats reset; emits a preview `match_guid` |
+| Goal scored | `goal:scored` | Blue score increments; event includes player, assister, and goal speed |
+| Overtime | `overtime:started` | Match `overtime` becomes `true` and clock moves to `0:00` |
+| Match ended | `match:ended` | Match ends and session totals increment |
+| Return to Menu | `match:destroyed` | Match becomes inactive and overtime/clock reset to menu state |
 | Reset session | `session:reset` then `session:updated` | Session totals reset to zero |
+| Match initialized | `match:initialized` | No state mutation; useful for overlays that wait for the loaded match |
+| Countdown | `countdown:begin` | No state mutation; useful for intros and kickoff animations |
+| Round Start | `round:started` | No state mutation; signals gameplay start |
+| Pause / Resume | `match:paused` / `match:unpaused` | No state mutation; useful for overlays that reflect pauses |
+| Ball Hit | `ball:hit` | No state mutation; emits a reactive ball-speed payload |
+| Crossbar Hit | `crossbar:hit` | No state mutation; emits an impact payload |
+| Replay Start / Will End / End | `goal:replay` / `goal:replay:will-end` / `goal:replay` | No state mutation; useful for replay visibility and timing |
+| Demolition Feed | `statfeed:event` | No state mutation; emits a demo-style statfeed payload |
+| Player Demo | `player:demolished` | No state mutation; emits attacker/victim names |
+| Podium | `podium:started` | No state mutation; useful for post-match winner scenes |
+| Replay Saved | `replay:created` | No state mutation; signals replay creation |
 
 ## Development workflow
 
