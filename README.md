@@ -12,7 +12,8 @@ RL Overlay Hub reads live game data from Rocket League through `rlstatsapi`, run
 
 It is designed for streamers, overlay creators, and developers who want Rocket League overlays for OBS without having to build their own game-data bridge.
 
----
+<img width="783" alt="appdemo" src="https://github.com/user-attachments/assets/3afad7be-5db7-495a-856d-7cb36ddf4db1" />
+
 
 ## How it works
 
@@ -27,6 +28,8 @@ Overlay URLs look like this:
 ```text
 http://127.0.0.1:49100/overlay/<overlay-id>/
 ```
+
+
 
 ## Download
 
