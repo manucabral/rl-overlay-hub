@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "rl-overlay-hub"
 version = "0.1.0"
@@ -18,6 +22,9 @@ dev = [
     "nuitka>=2.3",
     "pytest>=8.2.0",
 ]
+
+[tool.setuptools.packages.find]
+include = ["app", "app.*"]
 
 [tool.black]
 line-length = 100
